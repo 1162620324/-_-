@@ -24,7 +24,7 @@ def gradient(X, y, beta):
     '''
     使用最大似然损失，对beta求梯度
     '''
-    X_hat = np.c_(X,np.ones((X.shape[0], 1))) # 17 * 3
+    X_hat = np.c_[X,np.ones((X.shape[0], 1))] # 17 * 3
     beta = beta.reshape(-1, 1)                # 3 * 1
     y = y.reshape(-1 ,1)                      # 17 * 1
     p1 = sigmoid(np.dot(X_hat, beta))         # 17 * 1
@@ -33,14 +33,15 @@ def gradient(X, y, beta):
 
     return gra.reshape(-1 , 1)                # 3 * 1
 
-def initialize_beta(n)
+def initialize_beta(n):
     beta = np.random.randn(n+1, 1)*0.5 + 1
+    return beta
 
 def update_parameters_gradDesc(X, y, beta, learning_rate, num_iterations, print_cost):
     '''
     采用梯度下降法更新参数，损失函数使用最大似然损失
     '''
-    for i in range(num_iterations)
+    for i in range(num_iterations):
         grad = gradient(X, y, beta)
         beta = beta - learning_rate*grad
 
@@ -106,7 +107,7 @@ if __name__ == '__main__':
 
     w1_sk, w2_sk = lr.coef_[0, :]
 
-    x2 = np,linspace(0,1)
+    x2 = np.linspace(0,1)
     y2 = -(w1_sk*x2 + lr.intercept_)/w2
 
     ax2, = plt.plot(x2, y2, label = 'sklearn_logistic')
